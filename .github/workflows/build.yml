@@ -15,6 +15,10 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Install Node Modules
         run: npm ci
+      - name: Coverage
+        run: npm run test:coverage
+        env:
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
