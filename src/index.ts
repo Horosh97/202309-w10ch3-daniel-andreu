@@ -1,8 +1,8 @@
 import chalk from "chalk";
-import { startServer } from "./server/app";
-import connectToDatabase from "./database";
+import { startServer } from "./server/app.js";
+import connectToDatabase from "./database/index.js";
 // eslint-disable-next-line no-unused-vars
-import app from "./server/app";
+import app from "./server/app.js";
 
 const port = process.env.PORT ?? 4000;
 if (!process.env.MONGODB_URL) {
