@@ -1,7 +1,16 @@
-import morgan from "morgan";
-import app from "./app.js";
-import express from "express";
+import chalk from "chalk";
+import { startServer } from "./server/app";
+import connectToDatabase from "./database";
+// eslint-disable-next-line no-unused-vars
+import app from "./server/app";
 
-app.use(morgan("dev"));
+const port = process.env.PORT ?? 4000;
+if (!process.env.MONGODB_URL) {
+  console.log(chalk.red("Missing MongoDB Connection String"));
+  process.exit();
+}
 
-app.use(express.json());
+const mongoUrl = process.env.MONGODB_URL;
+
+await connectToDatabase(mongoUrl);
+startServer(+port);
