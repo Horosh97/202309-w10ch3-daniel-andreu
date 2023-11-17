@@ -9,4 +9,6 @@ const motosController = new MotosController(motosRepository);
 
 motosRouter.get("/", motosController.getMotos);
 motosRouter.get("/:motoId", motosController.getMotoById);
+motosRouter.post("/", motosController.createMoto);
+
 export default motosRouter;
