@@ -1,4 +1,4 @@
-import type { MotoByIdRequest, MotosRepository } from "../types";
+import type { MotoByIdRequest, MotoData, MotosRepository } from "../types";
 import { type Request, type Response } from "express";
 
 class MotosController {
@@ -20,6 +20,19 @@ class MotosController {
       res.status(200).json({ moto });
     } catch {
       res.status(404).json({ error: "Moto not found" });
+    }
+  };
+
+  public createMoto = async (
+    req: Request<Record<string, unknown>, Record<string, unknown>, MotoData>,
+    res: Response,
+  ): Promise<void> => {
+    const motoData = req.body;
+    try {
+      const newMoto = await this.motosRepository.createMoto(motoData);
+      res.status(201).json({ moto: newMoto });
+    } catch {
+      res.status(500).json({ error: "Error creating the new moto" });
     }
   };
 }
