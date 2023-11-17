@@ -4,13 +4,13 @@ import PingController from "./PingController";
 describe("Given a PingController's getPong method", () => {
   describe("When it recieves a response", () => {
     const pingController = new PingController();
-    const mockStatus = jest.fn().mockReturnValue({ json: jest.fn() });
 
     const req = {};
     const res: Pick<Response, "status" | "json"> = {
-      status: mockStatus,
+      status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
+
     test("Then it should call its method status with 200", () => {
       const expectedStatus = 200;
 
