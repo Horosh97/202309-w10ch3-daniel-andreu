@@ -1,4 +1,8 @@
-import type { MotoByIdRequest, MotoData, MotosRepository } from "../types";
+import type {
+  MotoByIdRequest,
+  MotoCreateRequest,
+  MotosRepository,
+} from "../types";
 import { type Request, type Response } from "express";
 
 class MotosController {
@@ -24,7 +28,7 @@ class MotosController {
   };
 
   public createMoto = async (
-    req: Request<Record<string, unknown>, Record<string, unknown>, MotoData>,
+    req: MotoCreateRequest,
     res: Response,
   ): Promise<void> => {
     const motoData = req.body;
@@ -33,6 +37,20 @@ class MotosController {
       res.status(201).json({ moto: newMoto });
     } catch {
       res.status(500).json({ error: "Error creating the new moto" });
+    }
+  };
+
+  public deleteMoto = async (
+    req: MotoByIdRequest,
+    res: Response,
+  ): Promise<void> => {
+    const { motoId } = req.params;
+
+    try {
+      await this.motosRepository.deleteMoto(motoId);
+      res.status(200).json({});
+    } catch {
+      res.status(404).json({ error: "Couldn't delete the moto" });
     }
   };
 }
