@@ -11,6 +11,7 @@ describe("Given a MotosController's getMotos method", () => {
       getMotos: jest.fn().mockResolvedValue(motos),
       getMotoById: jest.fn(),
       createMoto: jest.fn(),
+      deleteMoto: jest.fn(),
     };
 
     const motosController = new MotosController(motosRepository);

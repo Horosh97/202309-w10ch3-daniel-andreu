@@ -22,6 +22,7 @@ describe("Given a motosControllers's method createMoto", () => {
       getMotoById: jest.fn(),
       getMotos: jest.fn(),
       createMoto: jest.fn().mockResolvedValue(mockMoto),
+      deleteMoto: jest.fn(),
     };
 
     const motosController = new MotosController(motosRepository);
@@ -53,6 +54,7 @@ describe("Given a motosControllers's method createMoto", () => {
       getMotoById: jest.fn(),
       getMotos: jest.fn(),
       createMoto: jest.fn().mockRejectedValue("error"),
+      deleteMoto: jest.fn(),
     };
 
     const motosController = new MotosController(motosRepository);
