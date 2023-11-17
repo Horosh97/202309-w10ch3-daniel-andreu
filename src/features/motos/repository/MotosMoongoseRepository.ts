@@ -24,8 +24,16 @@ class MotosMongooseRepository implements MotosRepository {
       return newMoto;
     } catch (error) {
       throw new Error(
-        "Error creating the new clown: " + (error as Error).message,
+        "Error creating the new moto: " + (error as Error).message,
       );
+    }
+  }
+
+  public async deleteMoto(motoId: string): Promise<void> {
+    try {
+      await Moto.findByIdAndDelete(motoId);
+    } catch (error) {
+      throw new Error("Error deleting the moto: " + (error as Error).message);
     }
   }
 }

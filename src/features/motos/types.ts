@@ -14,6 +14,7 @@ export interface MotosRepository {
   getMotos: () => Promise<MotoStructure[]>;
   getMotoById: (motoId: string) => Promise<MotoStructure>;
   createMoto: (moto: MotoData) => Promise<MotoStructure>;
+  deleteMoto: (motoId: string) => Promise<void>;
 }
 
 export type MotoByIdRequest = Request<{ motoId: string }>;
