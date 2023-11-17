@@ -17,3 +17,8 @@ export interface MotosRepository {
 }
 
 export type MotoByIdRequest = Request<{ motoId: string }>;
+export type MotoCreateRequest = Request<
+  Record<string, unknown>,
+  Record<string, unknown>,
+  MotoData
+>;

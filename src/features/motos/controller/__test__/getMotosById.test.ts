@@ -32,18 +32,18 @@ describe("Given a motosController's getMotoById method", () => {
       const expectedStatusCode = 200;
 
       await motosController.getMotoById(
-        req as Request<{ motoId: string }>,
+        req as MotoByIdRequest,
         res as Response,
       );
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call its method json with with Ducati Panigale", async () => {
+    test("Then it should call its method json with Ducati Panigale", async () => {
       const expectedMoto = motos[0];
 
       await motosController.getMotoById(
-        req as Request<{ motoId: string }>,
+        req as MotoByIdRequest,
         res as Response,
       );
 
@@ -69,7 +69,7 @@ describe("Given a motosController's getMotoById method", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call its method json with an error sayin 'Moto not found'", async () => {
+    test("Then it should call its method json with an error saying 'Moto not found'", async () => {
       const expectedErrorMessage = "Moto not found";
 
       await motosController.getMotoById(
