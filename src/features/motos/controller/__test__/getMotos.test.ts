@@ -8,6 +8,7 @@ describe("Given a MotosController's getMotos method", () => {
     const motos: MotoStructure[] = mockMotos;
 
     const motosRepository: MotosRepository = {
+      getMotoById: jest.fn(),
       getMotos: jest.fn().mockResolvedValue(motos),
     };
 
